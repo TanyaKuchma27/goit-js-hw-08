@@ -1,4 +1,3 @@
-
 import throttle from 'lodash.throttle';
 
 const storageKey = "feedback-form-state";
@@ -19,19 +18,19 @@ function fillFormLabels() {
     if (savedMessage) {   
         refs.input.value = JSON.parse(savedMessage).email || "";
         refs.textarea.value = JSON.parse(savedMessage).message || "";
+        formData = JSON.parse(savedMessage);
     }
-}
+};
 
 function onFormSubmit(evt) {
     evt.preventDefault();
     console.log(formData);
-    console.log(JSON.parse(savedMessage));
     evt.currentTarget.reset();
     localStorage.removeItem(storageKey);
 };
 
 function onFormInput(evt) {
     formData[evt.target.name] = evt.target.value;
-    console.log(formData);
+    // console.log(formData);
     localStorage.setItem(storageKey, JSON.stringify(formData));
 }
